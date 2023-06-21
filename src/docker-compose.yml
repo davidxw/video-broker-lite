@@ -1,0 +1,63 @@
+version: '3.7'
+
+#
+# Use this docker compose to run all containers in a AMD64 machine
+#
+
+networks:
+  edge-net:
+    driver: bridge
+
+services:
+  rtsp-source:
+    container_name: rtsp-source
+    image: ${CONTAINER_REGISTRY_SERVER}/rtsp-source:latest
+    tty: true
+    ports:
+      - 8554:8554
+      - 1935:1935
+    environment:
+      - RTSP_RTMPENABLE=yes
+      - RTSP_PROTOCOLS=tcp
+      - LOOPING_VIDEO=${LOOPING_VIDEO}
+    networks:
+      - edge-net
+
+  rtsp-out:
+    container_name: rtsp-out
+    image: ${CONTAINER_REGISTRY_SERVER}/rtsp-out:latest
+    tty: true
+    ports:
+      - 8555:8554
+      - 1936:1935
+    environment:
+      - RTSP_RTMPENABLE=yes
+      - RTSP_PROTOCOLS=tcp
+    networks:
+      - edge-net
+
+  face-detect:
+    container_name: face-detect
+    image: ${CONTAINER_REGISTRY_SERVER}/face-detect:latest
+    tty: true
+    ports:
+      - 5001:80
+    expose:
+      - 80
+    networks:
+      - edge-net
+
+  tracker:
+    container_name: tracker
+    image: ${CONTAINER_REGISTRY_SERVER}/tracker:latest
+    tty: true
+    environment:
+      - MODEL_ENDPOINT=${MODEL_ENDPOINT}
+      - RTMP_IN_URL=${RTMP_IN_URL}
+      - RTMP_OUT_URL=${RTMP_OUT_URL}
+      - MODEL_FREQUENCY=${MODEL_FREQUENCY}
+      - MODEL_THRESHOLD=${MODEL_THRESHOLD}
+    ports:
+      - 3001:3000
+    networks:
+      - edge-net
