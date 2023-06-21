@@ -243,10 +243,10 @@ def analyse_video_fast(video,send=None,local=True,extract_freq=1,analyse_freq=50
                 cv2.putText(frame,tag, (x+5,y-5), cv2.FONT_HERSHEY_PLAIN , 1.0, (0,0,0), 1)
 
                 # blur
-                try:
-                    frame[ y:y+h, x:x+w ] = cv2.blur(frame[y:y+h, x:x+w], (23, 23))
-                except:
-                    pass
+                #try:
+                #    frame[ y:y+h, x:x+w ] = cv2.blur(frame[y:y+h, x:x+w], (23, 23))
+                #except:
+                #    pass
 
             if send:
                  asyncio.run(send(frame))

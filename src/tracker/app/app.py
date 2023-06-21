@@ -26,7 +26,7 @@ while not streamAvailable:
         print(f"... connected.")
         streamAvailable = True
     else:
-        print(f"Connection failed, retyring in {connectWaitSeconds} second(s) ...")
+        print(f"Connection failed, retrying in {connectWaitSeconds} second(s) ...")
         time.sleep(connectWaitSeconds)
 
 print(f"fps: {fps}")

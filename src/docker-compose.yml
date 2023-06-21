@@ -61,3 +61,12 @@ services:
       - 3001:3000
     networks:
       - edge-net
+
+  player:
+    container_name: player
+    image: ${CONTAINER_REGISTRY_SERVER}/player:latest
+    tty: true
+    ports:
+      - 8083:8083
+    networks:
+      - edge-net
