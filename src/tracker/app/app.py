@@ -9,14 +9,26 @@ RTMP_IN_URL = os.environ["RTMP_IN_URL"]
 RTMP_OUT_URL = os.environ["RTMP_OUT_URL"]
 MODEL_FREQUENCY = float(os.environ["MODEL_FREQUENCY"])
 
-print(f"Connecting to: {RTMP_IN_URL}")
+streamAvailable = False
+connectWaitSeconds = 2
 
-cap = cv2.VideoCapture(RTMP_IN_URL)
+while not streamAvailable:
+    print(f"Attempting to connect to: {RTMP_IN_URL}")
 
-# gather video info to ffmpeg
-fps = int(cap.get(cv2.CAP_PROP_FPS))
-width = int(cap.get(cv2.CAP_PROP_FRAME_WIDTH))
-height = int(cap.get(cv2.CAP_PROP_FRAME_HEIGHT))
+    cap = cv2.VideoCapture(RTMP_IN_URL)
+
+    # gather video info to ffmpeg
+    fps = int(cap.get(cv2.CAP_PROP_FPS))
+    width = int(cap.get(cv2.CAP_PROP_FRAME_WIDTH))
+    height = int(cap.get(cv2.CAP_PROP_FRAME_HEIGHT))
+
+    if fps != 0:
+        print(f"... connected.")
+        streamAvailable = True
+    else:
+        print(f"Connection failed, retyring in {connectWaitSeconds} second(s) ...")
+        time.sleep(connectWaitSeconds)
+
 print(f"fps: {fps}")
 print(f"W: {width} x H: {height}")
 
