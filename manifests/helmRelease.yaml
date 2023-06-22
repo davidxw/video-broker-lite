@@ -1,0 +1,30 @@
+# https://medium.com/@damianmyerscough/fluxcd-deploy-a-helm-chat-from-git-bc517d619810
+apiVersion: source.toolkit.fluxcd.io/v1beta2
+kind: GitRepository
+metadata:
+  name: broker-lite-repo
+spec:
+  interval: 5m
+  url: https://github.com/davidxw/video-broker-lite
+  ref:
+    branch: main
+  ignore: |-
+    # exclude all
+    /*
+    # include charts directory
+    !/manifests/broker-lite-chart/
+---
+apiVersion: helm.toolkit.fluxcd.io/v2beta1
+kind: HelmRelease
+metadata:
+  name: broker-lite
+spec:
+  releaseName: broker-lite
+  chart:
+    spec:
+      chart: /manifests/broker-lite-chart
+      sourceRef:
+        kind: GitRepository
+        name: broker-lite-repo
+  interval: 1m
+
