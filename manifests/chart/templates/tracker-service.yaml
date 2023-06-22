@@ -1,0 +1,12 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: tracker
+spec:
+  type: ClusterIP
+  ports:
+    - name: "3001"
+      port: 3001
+      targetPort: 3000
+  selector:
+    app: tracker

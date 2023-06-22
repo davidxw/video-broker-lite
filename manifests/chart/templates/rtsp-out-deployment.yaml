@@ -1,0 +1,26 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: rtsp-out
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: rtsp-out
+  template:
+    metadata:
+      labels:
+        app: rtsp-out
+    spec:
+      containers:
+        - env:
+            - name: RTSP_PROTOCOLS
+              value: tcp
+            - name: RTSP_RTMPENABLE
+              value: 'yes'
+          image: {{ .Values.CONTAINER_REGISTRY_SERVER }}/rtsp-out:latest
+          name: rtsp-out
+          ports:
+            - containerPort: 8554
+            - containerPort: 1935
+            - containerPort: 8888

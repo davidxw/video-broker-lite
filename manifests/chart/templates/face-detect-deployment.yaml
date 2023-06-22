@@ -1,0 +1,19 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: face-detect
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: face-detect
+  template:
+    metadata:
+      labels:
+        app: face-detect
+    spec:
+      containers:
+        - image: {{ .Values.CONTAINER_REGISTRY_SERVER }}/face-detect:latest
+          name: face-detect
+          ports:
+            - containerPort: 80

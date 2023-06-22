@@ -1,0 +1,26 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: player
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: player
+  template:
+    metadata:
+      labels:
+        app: player
+    spec:
+      volumes:
+        - name: player-configmap-volume
+          configMap:
+            name: player-configmap
+      containers:
+        - image: {{ .Values.CONTAINER_REGISTRY_SERVER }}/player:latest
+          volumeMounts:
+          - mountPath: /config
+            name: player-configmap-volume
+          name: player
+          ports:
+            - containerPort: 8083

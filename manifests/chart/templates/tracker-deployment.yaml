@@ -1,0 +1,30 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: tracker
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: tracker
+  template:
+    metadata:
+      labels:
+        app: tracker
+    spec:
+      containers:
+        - env:
+            - name: MODEL_ENDPOINT
+              value: {{ .Values.MODEL_ENDPOINT }}
+            - name: MODEL_FREQUENCY
+              value: '{{ .Values.MODEL_FREQUENCY }}'
+            - name: MODEL_THRESHOLD
+              value: '{{ .Values.MODEL_THRESHOLD }}'
+            - name: RTMP_IN_URL
+              value: {{ .Values.RTMP_IN_URL }}
+            - name: RTMP_OUT_URL
+              value: {{ .Values.RTMP_OUT_URL }}
+          image: {{ .Values.CONTAINER_REGISTRY_SERVER }}/tracker:latest
+          name: tracker
+          ports:
+            - containerPort: 3000

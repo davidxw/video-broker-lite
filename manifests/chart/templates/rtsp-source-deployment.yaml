@@ -1,0 +1,28 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: rtsp-source
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: rtsp-source
+  template:
+    metadata:
+      labels:
+        app: rtsp-source
+    spec:
+      containers:
+        - env:
+            - name: RTSP_PROTOCOLS
+              value: tcp
+            - name: RTSP_RTMPENABLE
+              value: 'yes'
+            - name: LOOPING_VIDEO
+              value: {{ .Values.LOOPING_VIDEO }}
+          image: {{ .Values.CONTAINER_REGISTRY_SERVER }}/rtsp-source:latest
+          name: rtsp-source
+          ports:
+            - containerPort: 8554
+            - containerPort: 1935
+            - containerPort: 8888
