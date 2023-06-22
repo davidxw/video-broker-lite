@@ -32,22 +32,26 @@ data:
       "streams": {
         "Input": {
           "channels": {
-            "cam1": {
+            "0": {
+              "name": "cam1",
               "url": "rtsp://rtsp-source:8554/cam1",
               "debug": false,
               "audio": true,
-              "on_demand": true
+              "on_demand": true,
+              "status": 0
             }
           },
           "name": "Input"
         },
         "Output": {
           "channels": {
-            "inf1": {
+            "0": {
+              "name": "inf1",
               "url": "rtsp://rtsp-out:8554/inf1",
               "debug": false,
               "audio": true,
-              "on_demand": true
+              "on_demand": true,
+              "status": 0
             }
           },
           "name": "Output"
