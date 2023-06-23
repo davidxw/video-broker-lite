@@ -10,7 +10,7 @@ az extension update -n k8s-extension
 az k8s-configuration flux create -g $RG -c $CLSUTER \
 -n broker \
 --namespace broker-flux \
--t maangedClusters \
+-t managedClusters \
 --scope cluster \
 --interval 1m0s \
 -u https://github.com/davidxw/video-broker-lite \

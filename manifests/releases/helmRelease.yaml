@@ -27,10 +27,10 @@ metadata:
   namespace: broker-flux
 spec:
   releaseName: broker-lite
+  targetNamespace: broker-lite
   chart:
     spec:
       chart: manifests/broker-lite-chart
-      targetNamespace: broker-lite
       sourceRef:
         kind: GitRepository
         name: broker-lite-repo
