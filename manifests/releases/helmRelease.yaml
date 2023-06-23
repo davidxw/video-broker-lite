@@ -1,14 +1,9 @@
-kind: Namespace
-apiVersion: v1
-metadata:
-  name: broker-helm
----
 # https://medium.com/@damianmyerscough/fluxcd-deploy-a-helm-chat-from-git-bc517d619810
 apiVersion: source.toolkit.fluxcd.io/v1beta2
 kind: GitRepository
 metadata:
   name: broker-lite-repo
-  namespace: broker-helm
+  namespace: broker-flux
 spec:
   interval: 5m
   url: https://github.com/davidxw/video-broker-lite
@@ -20,16 +15,22 @@ spec:
     # include maifests directory
     !/manifests/
 ---
+kind: Namespace
+apiVersion: v1
+metadata:
+  name: broker-lite
+---
 apiVersion: helm.toolkit.fluxcd.io/v2beta1
 kind: HelmRelease
 metadata:
   name: broker-lite
-  namespace: broker-helm
+  namespace: broker-flux
 spec:
   releaseName: broker-lite
   chart:
     spec:
       chart: manifests/broker-lite-chart
+      targetNamespace: broker-lite
       sourceRef:
         kind: GitRepository
         name: broker-lite-repo
