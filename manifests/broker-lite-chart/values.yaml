@@ -3,5 +3,5 @@ LOOPING_VIDEO: mslow.mp4
 MODEL_ENDPOINT: http://face-detect/image
 RTMP_IN_URL: rtsp://rtsp-source:8554/sm1
 RTMP_OUT_URL: rtsp://rtsp-out:8554/inf1
-MODEL_FREQUENCY: 1
+MODEL_FREQUENCY: 0.3
 MODEL_THRESHOLD: 0.5
