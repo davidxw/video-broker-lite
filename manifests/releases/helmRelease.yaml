@@ -3,6 +3,7 @@ apiVersion: source.toolkit.fluxcd.io/v1beta2
 kind: GitRepository
 metadata:
   name: broker-lite-repo
+  namespace: broker-lite
 spec:
   interval: 5m
   url: https://github.com/davidxw/video-broker-lite
