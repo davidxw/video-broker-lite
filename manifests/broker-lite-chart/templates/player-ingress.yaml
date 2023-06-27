@@ -17,3 +17,10 @@ spec:
             name: player
             port:
               number: 8083
+      - path: /static(/|$)(.*)
+        pathType: Prefix
+        backend:
+          service:
+            name: player
+            port:
+              number: 8083
