@@ -1,7 +1,7 @@
 apiVersion: v1
 name: video-broker-lite
 description: An application that demonstrates processing video streams
-version: 0.2
+version: 0.3
 keywords:
 sources:
 home:
