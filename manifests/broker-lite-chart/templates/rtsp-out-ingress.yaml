@@ -1,0 +1,26 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: rtsp-out-ingress
+  annotations:
+    nginx.ingress.kubernetes.io/rewrite-target: /$2
+    nginx.ingress.kubernetes.io/use-regex: "true"
+spec:
+  ingressClassName: nginx
+  rules:
+  - http:
+      paths:
+      - path: /rtsp-out-hls(/|$)(.*)
+        pathType: Prefix
+        backend:
+          service:
+            name: rtsp-out
+            port:
+              number: 8888
+      - path: /rtsp-out-webrtc(/|$)(.*)
+        pathType: Prefix
+        backend:
+          service:
+            name: rtsp-out
+            port:
+              number: 8889
