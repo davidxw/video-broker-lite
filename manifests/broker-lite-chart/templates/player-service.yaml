@@ -4,7 +4,6 @@ metadata:
   name: player
 spec:
   type: ClusterIP
-  #type: LoadBalancer
   ports:
     - name: "8083"
       port: 80

@@ -11,16 +11,6 @@ spec:
     - name: "1935"
       port: 1935
       targetPort: 1935
-  selector:
-    app: rtsp-out
----
-apiVersion: v1
-kind: Service
-metadata:
-  name: rtsp-out-ext
-spec:
-  type: LoadBalancer
-  ports:
     - name: "8888"
       port: 8888
       targetPort: 8888
