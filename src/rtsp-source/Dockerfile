@@ -7,7 +7,7 @@ RUN apk add --no-cache ffmpeg
 # Copy over rtsp-simple-server and server config
 COPY --from=rtsp /rtsp-simple-server /
 
-EXPOSE 1935 8554
+EXPOSE 1935 8554 8888 8889
 
 # Add sample video
 COPY *.mp4 /

@@ -283,15 +283,15 @@ paths:
     runOnRead:
     # Restart the command if it exits suddenly.
     runOnReadRestart: no
-  cam1:
-    # runOnInit: ffmpeg -re -stream_loop -1 -i ms.mp4 -pix_fmt yuv420p -c copy -f rtsp rtsp://localhost:$RTSP_PORT/$RTSP_PATH
-    runOnInit: ffmpeg -re -stream_loop -1 -i mslow.mp4 -pix_fmt yuv420p -c:v libx264 -f rtsp rtsp://localhost:$RTSP_PORT/$RTSP_PATH
-    # Restart the command if it exits suddenly.
-    runOnInitRestart: yes
-  bw1:
-    runOnInit: ffmpeg -re -stream_loop -1 -i mslow.mp4 -filter:v "hue=s=0" -pix_fmt yuv420p -c:v libx264 -f rtsp rtsp://localhost:$RTSP_PORT/$RTSP_PATH
-    # Restart the command if it exits suddenly.
-    runOnInitRestart: yes
+  # cam1:
+  #   # runOnInit: ffmpeg -re -stream_loop -1 -i ms.mp4 -pix_fmt yuv420p -c copy -f rtsp rtsp://localhost:$RTSP_PORT/$RTSP_PATH
+  #   runOnInit: ffmpeg -re -stream_loop -1 -i mslow.mp4 -pix_fmt yuv420p -c:v libx264 -f rtsp rtsp://localhost:$RTSP_PORT/$RTSP_PATH
+  #   # Restart the command if it exits suddenly.
+  #   runOnInitRestart: yes
+  # bw1:
+  #   runOnInit: ffmpeg -re -stream_loop -1 -i mslow.mp4 -filter:v "hue=s=0" -pix_fmt yuv420p -c:v libx264 -f rtsp rtsp://localhost:$RTSP_PORT/$RTSP_PATH
+  #   # Restart the command if it exits suddenly.
+  #   runOnInitRestart: yes
   sm1:
     runOnInit: ffmpeg -re -stream_loop -1 -i mslow.mp4 -filter:v "scale=w=640:h=-1"  -pix_fmt yuv420p -c:v libx264 -f rtsp rtsp://localhost:$RTSP_PORT/$RTSP_PATH
     # Restart the command if it exits suddenly.

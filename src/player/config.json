@@ -27,8 +27,8 @@
     "Input": {
       "channels": {
         "0": {
-          "name": "cam1",
-          "url": "rtsp://rtsp-source:8554/cam1",
+          "name": "sm1",
+          "url": "rtsp://rtsp-source:8554/sm1",
           "debug": false,
           "audio": true,
           "on_demand": true,
