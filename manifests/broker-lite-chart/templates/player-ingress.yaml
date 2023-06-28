@@ -1,26 +1,19 @@
-apiVersion: networking.k8s.io/v1
-kind: Ingress
-metadata:
-  name: player-ingress
-  annotations:
-    nginx.ingress.kubernetes.io/rewrite-target: /$2
-    nginx.ingress.kubernetes.io/use-regex: "true"
-spec:
-  ingressClassName: nginx
-  rules:
-  - http:
-      paths:
-      - path: /player(/|$)(.*)
-        pathType: Prefix
-        backend:
-          service:
-            name: player
-            port:
-              number: 8083
-      - path: /static(/|$)(.*)
-        pathType: Prefix
-        backend:
-          service:
-            name: player
-            port:
-              number: 8083
+# apiVersion: networking.k8s.io/v1
+# kind: Ingress
+# metadata:
+#   name: player-ingress
+#   annotations:
+#     nginx.ingress.kubernetes.io/rewrite-target: /$2
+#     nginx.ingress.kubernetes.io/use-regex: "true"
+# spec:
+#   ingressClassName: nginx
+#   rules:
+#   - http:
+#       paths:
+#       - path: /player(/|$)(.*)
+#         pathType: Prefix
+#         backend:
+#           service:
+#             name: player
+#             port:
+#               number: 80
