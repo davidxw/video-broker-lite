@@ -11,8 +11,8 @@ spec:
     - name: "1935"
       port: 1935
       targetPort: 1935
-    # - name: "8888"
-    #   port: 8888
+    - name: "8888"
+      port: 8888
     #   targetPort: 8888
     # - name: "8889"
     #   port: 8889
@@ -20,6 +20,7 @@ spec:
   selector:
     app: rtsp-out
 ---
+# A HLS stream of the output - can be accessed via http.
 apiVersion: v1
 kind: Service
 metadata:

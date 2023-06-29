@@ -17,3 +17,5 @@ spec:
           name: face-detect
           ports:
             - containerPort: 80
+      imagePullSecrets:
+      - name: azurestackhciacr-auth

@@ -1,4 +1,5 @@
-CONTAINER_REGISTRY_SERVER: docker.io/davidxw
+#CONTAINER_REGISTRY_SERVER: docker.io/davidxw
+CONTAINER_REGISTRY_SERVER: azurestackhciacr.azurecr.io
 LOOPING_VIDEO: mslow.mp4
 MODEL_ENDPOINT: http://face-detect/image
 RTMP_IN_URL: rtsp://rtsp-source:8554/sm1

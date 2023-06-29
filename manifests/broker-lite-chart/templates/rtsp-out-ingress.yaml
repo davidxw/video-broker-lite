@@ -1,3 +1,5 @@
+# Uncomment to expose a HLS stream via ingress at path /rtsp-out-hls
+#
 # apiVersion: networking.k8s.io/v1
 # kind: Ingress
 # metadata:
@@ -17,10 +19,3 @@
 #             name: rtsp-out
 #             port:
 #               number: 8888
-#       - path: /rtsp-out-webrtc(/|$)(.*)
-#         pathType: Prefix
-#         backend:
-#           service:
-#             name: rtsp-out
-#             port:
-#               number: 8889

@@ -27,3 +27,5 @@ spec:
             - containerPort: 1935
             - containerPort: 8888
             - containerPort: 8889
+      imagePullSecrets:
+      - name: azurestackhciacr-auth

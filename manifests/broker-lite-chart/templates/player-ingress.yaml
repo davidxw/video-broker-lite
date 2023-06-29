@@ -17,3 +17,47 @@
 #             name: player
 #             port:
 #               number: 80
+# ---
+#
+# The ingresses below attempt to resolve an issue whereby the player is unable to load the static files and pages
+# as their paths are relative to one level below the root of the application. They solve some of the issues but not all.
+#
+# apiVersion: networking.k8s.io/v1
+# kind: Ingress
+# metadata:
+#   name: player-ingress-static
+#   annotations:
+#     nginx.ingress.kubernetes.io/rewrite-target: /$1
+#     nginx.ingress.kubernetes.io/use-regex: "true"
+# spec:
+#   ingressClassName: nginx
+#   rules:
+#   - http:
+#       paths:
+#       - path: /(static/.*)
+#         pathType: Prefix
+#         backend:
+#           service:
+#             name: player
+#             port:
+#               number: 80
+# ---
+# apiVersion: networking.k8s.io/v1
+# kind: Ingress
+# metadata:
+#   name: player-ingress-pages
+#   annotations:
+#     nginx.ingress.kubernetes.io/rewrite-target: /$1
+#     nginx.ingress.kubernetes.io/use-regex: "true"
+# spec:
+#   ingressClassName: nginx
+#   rules:
+#   - http:
+#       paths:
+#       - path: /(pages/.*)
+#         pathType: Prefix
+#         backend:
+#           service:
+#             name: player
+#             port:
+#               number: 80

@@ -24,3 +24,5 @@ spec:
           name: player
           ports:
             - containerPort: 8083
+      imagePullSecrets:
+      - name: azurestackhciacr-auth
