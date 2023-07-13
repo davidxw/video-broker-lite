@@ -1,8 +1,8 @@
 
-$CLUSTER=storeaks
-$RG=hci-dev-aae
+$CLUSTER="storeaks"
+$RG="hci-dev-aae"
 
-az k8s-configuration flux create -g $RG -c storeaks $CLUSTER `
+az k8s-configuration flux create -g $RG -c $CLUSTER `
 -n broker `
 --namespace broker-flux `
 -t connectedClusters `
@@ -10,6 +10,6 @@ az k8s-configuration flux create -g $RG -c storeaks $CLUSTER `
 --interval 1m0s `
 -u https://github.com/davidxw/video-broker-lite `
 --branch main  `
---kustomization name=broker-helm path=./manifests/releases sync_interval=1m0s prune=true 
+--kustomization name=broker-helm path=./manifests/releases sync_interval=1m0s prune=false
 
 #az k8s-configuration flux delete -g $RG -c $CLUSTER -n broker -t connectedClusters

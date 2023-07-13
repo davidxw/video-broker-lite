@@ -1,0 +1,7 @@
+FROM nvcr.io/nvidia/deepstream:6.2-samples
+
+COPY deepstream.txt /opt/nvidia/deepstream/deepstream/samples/configs/deepstream-app/
+
+WORKDIR /opt/nvidia/deepstream/deepstream/samples/configs/deepstream-app
+
+CMD ["deepstream-app", "-c", "deepstream.txt"]

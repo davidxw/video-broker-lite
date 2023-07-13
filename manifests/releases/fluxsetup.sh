@@ -15,7 +15,7 @@ az k8s-configuration flux create -g $RG -c $CLSUTER \
 --interval 1m0s \
 -u https://github.com/davidxw/video-broker-lite \
 --branch main  \
---kustomization name=broker-helm path=./manifests/releases sync_interval=1m0s prune=true 
+--kustomization name=broker-helm path=./manifests/releases sync_interval=1m0s prune=false \
 
 #az k8s-configuration flux delete -g $RG -c $CLSUTER -n broker -t managedClusters
 

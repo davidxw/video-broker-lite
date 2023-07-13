@@ -31,6 +31,9 @@ spec:
     - name: "8888"
       port: 80
       targetPort: 8888
+    - name: "8554"
+      port: 8554
+      targetPort: 8554
     # - name: "8889"
     #   port: 8889
     #   targetPort: 8889  

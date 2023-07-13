@@ -1,0 +1,61 @@
+apiVersion: v1 
+kind: Pod 
+metadata: 
+  name: deepstream-test 
+  labels:
+    app: deepstream-test
+spec: 
+  restartPolicy: OnFailure 
+  containers: 
+  - name: deepstream-test 
+    image: "nvcr.io/nvidia/deepstream:6.2-samples" 
+    command: ["/bin/sleep"] 
+    args: ["infinity"]
+    ports:
+      - containerPort: 8554
+    resources: 
+      requests:
+        memory: "3G"
+        cpu: "1"
+      limits: 
+        nvidia.com/gpu: 1 
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: deepstream-test-service
+spec:
+  type: ClusterIP
+  ports:
+    - name: "rtsp"
+      port: 8554
+      targetPort: 8554
+  selector:
+    app: deepstream-test
+---
+apiVersion: v1 
+kind: Pod 
+metadata: 
+  name: player
+  labels:
+    app: player
+spec: 
+  restartPolicy: OnFailure 
+  containers: 
+  - name: player 
+    image: "docker.io/davidxw/player:latest" 
+    ports:
+      - containerPort: 8083
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: player
+spec:
+  type: LoadBalancer
+  ports:
+    - name: "8083"
+      port: 8080
+      targetPort: 8083
+  selector:
+    app: player
