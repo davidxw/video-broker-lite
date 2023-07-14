@@ -2,6 +2,7 @@ apiVersion: v1
 kind: Pod 
 metadata: 
   name: deepstream-test 
+  namespace: gputest
   labels:
     app: deepstream-test
 spec: 
@@ -24,6 +25,7 @@ apiVersion: v1
 kind: Service
 metadata:
   name: deepstream-test-service
+  namespace: gputest
 spec:
   type: ClusterIP
   ports:
@@ -37,6 +39,7 @@ apiVersion: v1
 kind: Pod 
 metadata: 
   name: player
+  namespace: gputest
   labels:
     app: player
 spec: 
@@ -50,6 +53,7 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
+  namespace: gputest
   name: player
 spec:
   type: LoadBalancer
