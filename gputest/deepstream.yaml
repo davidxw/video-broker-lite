@@ -9,8 +9,8 @@ spec:
   restartPolicy: OnFailure 
   containers: 
   - name: deepstream-test 
-    image: "docker.io/davidxw/deepstream:latest" 
-    #image: "docker.io/davidxw/webtest:latest" 
+    #image: "docker.io/davidxw/deepstream:latest" 
+    image: "docker.io/davidxw/webtest:latest" 
     ports:
       - containerPort: 8554
     resources: 
