@@ -34,6 +34,20 @@ spec:
   selector:
     app: deepstream-test
 ---
+apiVersion: v1
+kind: Service
+metadata:
+  name: deepstream-test-service-ext
+  namespace: gputest
+spec:
+  type: LoadBalancer
+  ports:
+    - name: "rtsp"
+      port: 8554
+      targetPort: 8554
+  selector:
+    app: deepstream-test
+---
 apiVersion: v1 
 kind: Pod 
 metadata: 
@@ -57,8 +71,8 @@ metadata:
 spec:
   type: LoadBalancer
   ports:
-    - name: "8083"
-      port: 8080
+    - name: "80"
+      port: 80
       targetPort: 8083
   selector:
     app: player
